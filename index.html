@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW Sales Analysis Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1e90ff;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        img {
+            width: 30%;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333;
+            border-left: 5px solid #1e90ff;
+            padding-left: 10px;
+        }
+        pre {
+            background: #eef;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        BMW Sales Data Analysis Dashboard
+    </header>
+
+    <div class="container">
+        <h2>📊 Summary</h2>
+        <pre id="summary">Loading summary...</pre>
+
+        <h2>1️⃣ Yearly BMW Sales</h2>
+        <img src="output/yearly_sales.png" alt="Yearly Sales Chart">
+
+        <h2>2️⃣ Top 5 BMW Models</h2>
+        <img src="output/top_models.png" alt="Top Models Chart">
+
+        <h2>3️⃣ Region-wise Sales</h2>
+        <img src="output/region_sales.png" alt="Region Sales Chart">
+
+        <h2>4️⃣ Feature Correlation Heatmap</h2>
+        <img src="output/correlation.png" alt="Correlation Heatmap">
+    </div>
+
+    <script>
+        // Try fetching the summary dynamically from output folder
+        fetch('output/summary.txt')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Summary file not found');
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('summary').textContent = data;
+        })
+        .catch(error => {
+            document.getElementById('summary').textContent =
+                "⚠️ Could not load summary.txt. Please make sure it exists in the 'output' folder.\n\nError: " + error.message;
+        });
+    </script>
+</body>
+</html>

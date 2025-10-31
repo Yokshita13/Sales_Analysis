@@ -1,0 +1,4 @@
+total_sales: 15005
+top_model: BMW Z4
+top_region: Africa
+avg_revenue: 75213.04
